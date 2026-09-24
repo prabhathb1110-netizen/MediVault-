@@ -1,7 +1,7 @@
 :root{
-  --bg:#faf6f6;--card:#fff;--ink:#2b1717;--muted:#6d4c4c;--line:#ead7d7;
-  --accent:#b3262f;--tint:#fce7e7;
-  --ok:#b3262f;--ok-bg:#fbe6e7;--warn:#9a6300;--warn-bg:#fdf0d5;--bad:#b3261e;--bad-bg:#fbe5e3;
+  --bg:#f6faf8;--card:#fff;--ink:#17322c;--muted:#5d716b;--line:#d8e4df;
+  --accent:#0f6b5c;--tint:#e6f2ee;
+  --ok:#1d7a4d;--ok-bg:#e3f5ec;--warn:#9a6300;--warn-bg:#fdf0d5;--bad:#b3261e;--bad-bg:#fbe5e3;
   --radius:8px;
 }
 *{box-sizing:border-box}
@@ -24,7 +24,7 @@ nav a.active{border-color:var(--accent);color:var(--accent)}
 
 /* form controls */
 input,select{font:inherit;padding:10px 12px;border:1px solid var(--line);border-radius:var(--radius);background:#fff;color:var(--ink);width:100%}
-:is(input,select,button,a):focus-visible{outline:3px solid #e7a7aa;outline-offset:1px}
+:is(input,select,button,a):focus-visible{outline:3px solid #7fc4b6;outline-offset:1px}
 .btn{font:inherit;font-weight:600;padding:9px 16px;border-radius:var(--radius);border:1px solid var(--accent);background:var(--accent);color:#fff;cursor:pointer}
 .btn:disabled{opacity:.6;cursor:default}
 .btn-ghost{background:transparent;color:var(--accent)}
