@@ -11,6 +11,7 @@ export default function Login() {
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
   const [busy, setBusy] = useState(false);
 
@@ -22,7 +23,7 @@ export default function Login() {
       await login(email, password);
       navigate(from, { replace: true });
     } catch (err) {
-      setError(err.message);
+      setError(err.message || 'Unable to sign in. Check your details and try again.');
     } finally {
       setBusy(false);
     }
@@ -64,19 +65,53 @@ export default function Login() {
           <span className="auth-eyebrow">STAFF PORTAL</span>
           <h2>Welcome back</h2>
           <p className="muted">Sign in to manage your pharmacy's stock.</p>
-          {USE_MOCK && <div className="notice">Demo mode: use staff@medivault.lk / staff123</div>}
+          {USE_MOCK && (
+            <div className="notice demo-credentials">
+              <strong>Demo access</strong>
+              <span>staff@medivault.lk</span>
+              <span>staff123</span>
+            </div>
+          )}
           <form onSubmit={submit}>
             <label>
               Email
-              <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required autoComplete="username" />
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+                autoComplete="username"
+                autoCapitalize="none"
+                spellCheck="false"
+              />
             </label>
             <label>
               Password
-              <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required autoComplete="current-password" />
+              <span className="password-field">
+                <input
+                  type={showPassword ? 'text' : 'password'}
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
+                  autoComplete="current-password"
+                />
+                <button
+                  className="password-toggle"
+                  type="button"
+                  aria-label={showPassword ? 'Hide password' : 'Show password'}
+                  aria-pressed={showPassword}
+                  onClick={() => setShowPassword((visible) => !visible)}
+                >
+                  {showPassword ? 'Hide' : 'Show'}
+                </button>
+              </span>
             </label>
             {error && <div className="notice notice-error" role="alert">{error}</div>}
-            <button className="btn" disabled={busy}>{busy ? 'Signing in...' : 'Log in'}</button>
+            <button className="btn login-submit" disabled={busy} aria-busy={busy}>
+              {busy ? 'Signing in...' : 'Log in'}
+            </button>
           </form>
+          <p className="auth-footnote">Secure access for pharmacy teams</p>
         </div>
       </div>
     </section>
